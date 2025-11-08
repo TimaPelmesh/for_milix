@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliteDrive - Эксклюзивная аренда премиальных автомобилей</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Иконки Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Шрифт для премиального вида -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gold: #d4af37;
+            --dark-navy: #0a0e17;
+            --light-gold: #f4e4a6;
+            --charcoal: #1a1d24;
+            --light-bg: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            background-color: #fff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3, h4, h5, .navbar-brand, .display-1, .display-2, .display-3, .display-4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+        
+        /* Навигация */
+        .navbar {
+            background-color: rgba(10, 14, 23, 0.95) !important;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            padding: 15px 0;
+        }
+        
+        .navbar.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-size: 1.8rem;
+            color: var(--primary-gold) !important;
+            letter-spacing: 1px;
+        }
+        
+        .nav-link {
+            color: #fff !important;
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-gold) !important;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Герой секция с эффектом выезжающей машины */
+        .hero-section {
+            background: linear-gradient(135deg, var(--dark-navy) 0%, #1a2539 100%);
+            color: white;
+            padding: 180px 0 100px;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-car {
+            position: absolute;
+            right: -20%;
+            bottom: 10%;
+            max-width: 60%;
+            height: auto;
+            z-index: 1;
+            transform: translateX(100px) translateY(-20px);
+            opacity: 0;
+            animation: carDriveIn 1.5s forwards 0.5s;
+        }
+        
+        @keyframes carDriveIn {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .btn-gold {
+            background-color: var(--primary-gold);
+            color: var(--dark-navy);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-gold:hover {
+            background-color: var(--light-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-outline-light {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 28px;
+            font-weight: 500;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-outline-light:hover {
+            border-color: var(--primary-gold);
+            background-color: transparent;
+            color: var(--primary-gold);
+        }
+        
+        /* Секции */
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            font-size: 2.5rem;
+            color: var(--dark-navy);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-gold);
+        }
+        
+        .section-title.text-center::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .bg-dark-section {
+            background-color: var(--dark-navy);
+            color: white;
+        }
+        
+        .bg-dark-section .section-title {
+            color: white;
+        }
+        
+        .bg-light-section {
+            background-color: var(--light-bg);
+        }
+        
+        /* Карточки автомобилей */
+        .car-card {
+            transition: all 0.4s ease;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border-radius: 4px;
+            overflow: hidden;
+            background: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .car-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .car-card-img {
+            height: 250px;
+            object-fit: contain;
+            width: 100%;
+            background-color: #f8f9fa;
+            padding: 15px;
+        }
+        
+        .car-card-body {
+            padding: 1.5rem;
+        }
+        
+        .car-card-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-navy);
+            font-weight: 600;
+        }
+        
+        .car-card-price {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-gold);
+        }
+        
+        .car-features li i {
+            color: var(--primary-gold);
+            margin-right: 10px;
+            width: 16px;
+            text-align: center;
+        }
+
+        .car-card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 2;
+        }
+                
+        .car-features li i {
+            color: var(--primary-gold);
+            margin-right: 10px;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .cards-container .col-md-6.col-lg-3 {
+            display: flex;
+        }
+        /* Табы */
+        .nav-tabs {
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+        
+        .nav-tabs .nav-link {
+            color: #666 !important;
+            border: none;
+            padding: 12px 25px;
+            font-weight: 500;
+            position: relative;
+            background: transparent;
+        }
+        
+        .nav-tabs .nav-link.active {
+            color: var(--dark-navy) !important;
+            background: transparent;
+            border: none;
+        }
+        
+        .nav-tabs .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-gold);
+        }
+        
+        /* Аккордеон */
+        .accordion-button {
+            font-weight: 500;
+            padding: 1.2rem 1.25rem;
+            background-color: white;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: var(--dark-navy);
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background-color: var(--dark-navy);
+            color: white;
+            box-shadow: none;
+        }
+        
+        .accordion-button:not(.collapsed)::after {
+            filter: brightness(0) invert(1);
+        }
+        
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: var(--primary-gold);
+        }
+        
+        /* Отзывы */
+        .testimonial-card {
+            border-left: 4px solid var(--primary-gold);
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            height: 100%;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .client-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .client-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 2px solid var(--primary-gold);
+        }
+        
+        /* Формы */
+        .form-control {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-gold);
+            box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.2);
+        }
+        
+        /* Футер */
+        footer {
+            background-color: var(--dark-navy);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 70px 0 30px;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            color: var(--primary-gold);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+        
+        .footer-heading {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary-gold);
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-gold);
+            padding-left: 5px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-gold);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3.2rem;
+            }
+            
+            .hero-car {
+                max-width: 70%;
+                right: -10%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .hero-car {
+                display: none;
+            }
+            
+            .hero-section {
+                padding: 150px 0 80px;
+                text-align: center;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .nav-tabs .nav-link {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .testimonial-card {
+                padding: 1.5rem;
+            }
+            
+            .section {
+                padding: 70px 0;
+            }
+            
+            .footer-heading {
+                margin-top: 1.5rem;
+            }
+            
+            .car-card-img {
+                height: 220px;
+                padding: 10px;
+            }
+            
+            .car-card {
+                margin-bottom: 2rem;
+            }
+            
+            footer {
+                padding: 50px 0 20px;
+            }
+            
+            footer .row > div {
+                margin-bottom: 2rem;
+            }
+            
+            .footer-logo {
+                font-size: 1.6rem;
+                margin-bottom: 1rem;
+            }
+            
+            .footer-heading {
+                font-size: 1.1rem;
+                margin-top: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .footer-links {
+                font-size: 0.9rem;
+            }
+            
+            .footer-links li {
+                margin-bottom: 8px;
+            }
+            
+            .copyright {
+                margin-top: 30px;
+                padding-top: 20px;
+            }
+            
+            /* Компактный блок контактов на мобильных */
+            #contact .row.mt-5 {
+                margin-top: 2rem !important;
+            }
+            
+            #contact .col-md-4 {
+                margin-bottom: 0.5rem;
+            }
+            
+            #contact .card-body {
+                padding: 1rem 0.5rem;
+            }
+            
+            #contact .card-body i {
+                font-size: 1.8rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            #contact .card-body h5 {
+                font-size: 0.95rem;
+                margin-bottom: 0.3rem;
+            }
+            
+            #contact .card-body p {
+                font-size: 0.85rem;
+                margin-bottom: 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .btn-gold, .btn-outline-light {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            
+            .hero-buttons {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .premium-badge {
+                font-size: 0.7rem;
+                padding: 4px 10px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .stat-label {
+                font-size: 0.8rem;
+            }
+            
+            .nav-tabs .nav-link {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+            
+            .car-card-title {
+                font-size: 1.1rem;
+            }
+            
+            .car-card-price {
+                font-size: 1.3rem;
+            }
+            
+            .car-features {
+                font-size: 0.9rem;
+            }
+            
+            .car-card-img {
+                height: 200px;
+                padding: 8px;
+            }
+            
+            .car-card-body {
+                padding: 1.2rem;
+            }
+            
+            .accordion-button {
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .testimonial-card {
+                padding: 1.25rem;
+            }
+            
+            .client-avatar {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .footer-logo {
+                font-size: 1.5rem;
+            }
+            
+            .section {
+                padding: 50px 0;
+            }
+            
+            .modal-dialog {
+                margin: 20px 10px;
+            }
+            
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+            
+            footer {
+                padding: 40px 0 15px;
+            }
+            
+            footer .container > .row > div {
+                margin-bottom: 1.5rem;
+                text-align: center;
+            }
+            
+            .footer-logo {
+                font-size: 1.4rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .footer-heading {
+                font-size: 1rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .footer-heading::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .footer-links {
+                font-size: 0.85rem;
+            }
+            
+            .footer-links li {
+                margin-bottom: 6px;
+            }
+            
+            .social-links {
+                text-align: center;
+            }
+            
+            .copyright {
+                margin-top: 20px;
+                padding-top: 15px;
+                font-size: 0.85rem;
+            }
+            
+            /* Очень компактный блок контактов для маленьких телефонов */
+            #contact .row.mt-5 {
+                margin-top: 1.5rem !important;
+            }
+            
+            #contact .col-md-4 {
+                margin-bottom: 0.3rem;
+                padding: 0 10px;
+            }
+            
+            #contact .card-body {
+                padding: 0.7rem 0.3rem;
+            }
+            
+            #contact .card-body i {
+                font-size: 1.5rem !important;
+                margin-bottom: 0.3rem !important;
+            }
+            
+            #contact .card-body h5 {
+                font-size: 0.85rem;
+                margin-bottom: 0.2rem;
+                font-weight: 600;
+            }
+            
+            #contact .card-body p {
+                font-size: 0.75rem;
+                line-height: 1.3;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .stat-number {
+                font-size: 1.8rem;
+            }
+            
+            .car-card-img {
+                height: 180px;
+                padding: 5px;
+            }
+            
+            .car-card-body {
+                padding: 1rem;
+            }
+            
+            .car-card-title {
+                font-size: 1rem;
+            }
+            
+            footer {
+                padding: 30px 0 10px;
+            }
+            
+            .footer-logo {
+                font-size: 1.3rem;
+            }
+            
+            .footer-heading {
+                font-size: 0.95rem;
+            }
+            
+            .footer-links {
+                font-size: 0.8rem;
+            }
+            
+            .social-links a {
+                width: 35px;
+                height: 35px;
+                margin-right: 8px;
+            }
+            
+            /* Максимально компактный блок контактов для очень маленьких экранов */
+            #contact .row.mt-5 {
+                margin-top: 1rem !important;
+            }
+            
+            #contact .col-md-4 {
+                margin-bottom: 0.2rem;
+                padding: 0 8px;
+            }
+            
+            #contact .card-body {
+                padding: 0.5rem 0.2rem;
+            }
+            
+            #contact .card-body i {
+                font-size: 1.3rem !important;
+                margin-bottom: 0.2rem !important;
+            }
+            
+            #contact .card-body h5 {
+                font-size: 0.8rem;
+                margin-bottom: 0.15rem;
+            }
+            
+            #contact .card-body p {
+                font-size: 0.7rem;
+                line-height: 1.2;
+            }
+        }
+        
+        /* Дополнительные элементы для роскоши */
+        .gold-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+            margin: 2rem 0;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .premium-badge {
+            display: inline-block;
+            background-color: var(--primary-gold);
+            color: var(--dark-navy);
+            padding: 5px 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 2px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+        
+        /* Улучшения для мобильной навигации */
+        .navbar-toggler {
+            border: none;
+            padding: 4px 8px;
+        }
+        
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+        
+        .navbar-toggler-icon {
+            width: 1.2em;
+            height: 1.2em;
+        }
+        
+        /* Улучшения для мобильных карточек */
+        .car-card {
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Улучшения для мобильных форм */
+        .form-control {
+            font-size: 16px; /* Убирает увеличение в iOS */
+        }
+        
+        /* Улучшения для модальных окон на мобильных */
+        .modal-content {
+            border-radius: 8px;
+            border: none;
+        }
+        
+        .modal-header {
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .modal-footer {
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header с навигацией -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <i class="bi bi-speedometer2 me-2"></i>EliteDrive
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#home">Главная</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">О нас</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#fleet">Автопарк</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#services">Услуги</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#testimonials">Отзывы</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Контакты</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Секция 1: Главная (Hero) -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <div class="premium-badge">Эксклюзивно</div>
+                    <h1 class="hero-title">Аренда премиальных автомобилей</h1>
+                    <p class="hero-subtitle">Испытайте непревзойденное удовольствие от вождения самых роскошных автомобилей мира. Бронируйте онлайн и получите эксклюзивное предложение!</p>
+                    <div class="hero-buttons d-flex gap-3 flex-wrap">
+                        <button class="btn btn-gold" data-bs-toggle="modal" data-bs-target="#bookingModal">Забронировать сейчас</button>
+                        <a href="#fleet" class="btn btn-outline-light">Наш автопарк</a>
+                    </div>
+                    
+                    <div class="row mt-5 pt-4">
+                        <div class="col-4 text-center">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">Лет опыта</div>
+                        </div>
+                        <div class="col-4 text-center">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Автомобилей</div>
+                        </div>
+                        <div class="col-4 text-center">
+                            <div class="stat-number">1000+</div>
+                            <div class="stat-label">Довольных клиентов</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <!-- Машина, выезжающая из экрана -->
+                    <img src="cars/car1.png" alt="Luxury Car" class="hero-car">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция 2: О нас -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">Эксклюзивный сервис премиум-класса</h2>
+            
+            <!-- Табы -->
+            <ul class="nav nav-tabs justify-content-center mb-4 flex-nowrap overflow-auto" id="aboutTabs" role="tablist" style="flex-wrap: nowrap;">
+                <li class="nav-item flex-shrink-0" role="presentation">
+                    <button class="nav-link active" id="experience-tab" data-bs-toggle="tab" data-bs-target="#experience" type="button" role="tab" aria-controls="experience" aria-selected="true">Опыт</button>
+                </li>
+                <li class="nav-item flex-shrink-0" role="presentation">
+                    <button class="nav-link" id="quality-tab" data-bs-toggle="tab" data-bs-target="#quality" type="button" role="tab" aria-controls="quality" aria-selected="false">Качество</button>
+                </li>
+                <li class="nav-item flex-shrink-0" role="presentation">
+                    <button class="nav-link" id="service-tab" data-bs-toggle="tab" data-bs-target="#service" type="button" role="tab" aria-controls="service" aria-selected="false">Сервис</button>
+                </li>
+            </ul>
+            
+            <div class="tab-content" id="aboutTabsContent">
+                <div class="tab-pane fade show active" id="experience" role="tabpanel" aria-labelledby="experience-tab">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 order-2 order-md-1">
+                            <h3 class="mb-4">10 лет безупречного сервиса</h3>
+                            <p class="mb-4">Наша компания работает на рынке аренды премиальных автомобилей более 10 лет. За это время мы сформировали безупречную репутацию и стали надежным партнером для тысяч клиентов.</p>
+                            <p>Мы понимаем потребности наших клиентов и предлагаем только проверенные решения, соответствующие самым высоким стандартам качества.</p>
+                        </div>
+                        <div class="col-md-6 order-1 order-md-2 mb-4 mb-md-0">
+                            <img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" class="img-fluid rounded shadow" alt="Experience">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="quality" role="tabpanel" aria-labelledby="quality-tab">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 order-2 order-md-1">
+                            <h3 class="mb-4">Только премиальные автомобили</h3>
+                            <p class="mb-4">Наш автопарк состоит исключительно из автомобилей премиум-класса ведущих мировых брендов. Каждый автомобиль проходит регулярное техническое обслуживание и находится в идеальном состоянии.</p>
+                            <p>Мы тщательно следим за состоянием каждого автомобиля, чтобы обеспечить нашим клиентам максимальный комфорт и безопасность.</p>
+                        </div>
+                        <div class="col-md-6 order-1 order-md-2 mb-4 mb-md-0">
+                            <img src="https://images.unsplash.com/photo-1593941707882-a5bba5331b56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" class="img-fluid rounded shadow" alt="Quality">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="service" role="tabpanel" aria-labelledby="service-tab">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 order-2 order-md-1">
+                            <h3 class="mb-4">Персональный подход к каждому клиенту</h3>
+                            <p class="mb-4">Мы предлагаем индивидуальный подход к каждому клиенту, учитывая все пожелания и требования. Наши менеджеры помогут подобрать автомобиль, который идеально подойдет для ваших нужд.</p>
+                            <p>Доставка автомобиля в удобное для вас место и время, круглосуточная поддержка и гибкие условия аренды - все это делает сотрудничество с нами максимально комфортным.</p>
+                        </div>
+                        <div class="col-md-6 order-1 order-md-2 mb-4 mb-md-0">
+                            <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" class="img-fluid rounded shadow" alt="Service">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция 3: Автопарк -->
+    <section id="fleet" class="section bg-light-section">
+        <div class="container">
+            <h2 class="section-title text-center">Наш эксклюзивный автопарк</h2>
+            <p class="text-center mb-5">Выберите автомобиль своей мечты из нашего премиального автопарка</p>
+            
+            <div class="row g-4">
+                <!-- Карточка автомобиля 1 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card car-card h-100">
+                        <img src="cars/Mercedes-Benz S-Class.png" class="card-img-top car-card-img" alt="Mercedes-Benz S-Class">
+                        <div class="card-body car-card-body d-flex flex-column">
+                            <h5 class="car-card-title">Mercedes-Benz S-Class</h5>
+                            <div class="car-card-price">$250/день</div>
+                            <ul class="car-features list-unstyled">
+                                <li><i class="bi bi-speedometer2"></i> 435 л.с.</li>
+                                <li><i class="bi bi-gear"></i> Автоматическая КПП</li>
+                                <li><i class="bi bi-people"></i> 5 мест</li>
+                            </ul>
+                            <div class="mt-auto">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="badge bg-success">В наличии</span>
+                                </div>
+                                <button class="btn btn-outline-dark w-100" data-bs-toggle="modal" data-bs-target="#carModal1">Подробнее</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Карточка автомобиля 2 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card car-card h-100">
+                        <img src="cars/BMW 7 Series.jpg" class="card-img-top car-card-img" alt="BMW 7 Series">
+                        <div class="card-body car-card-body d-flex flex-column">
+                            <h5 class="car-card-title">BMW 7 Series</h5>
+                            <div class="car-card-price">$230/день</div>
+                            <ul class="car-features list-unstyled">
+                                <li><i class="bi bi-speedometer2"></i> 400 л.с.</li>
+                                <li><i class="bi bi-gear"></i> Автоматическая КПП</li>
+                                <li><i class="bi bi-people"></i> 5 мест</li>
+                            </ul>
+                            <div class="mt-auto">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="badge bg-success">В наличии</span>
+                                </div>
+                                <button class="btn btn-outline-dark w-100" data-bs-toggle="modal" data-bs-target="#carModal2">Подробнее</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Карточка автомобиля 3 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card car-card h-100">
+                        <img src="cars/Audi A8.jpg" class="card-img-top car-card-img" alt="Audi A8">
+                        <div class="card-body car-card-body d-flex flex-column">
+                            <h5 class="car-card-title">Audi A8</h5>
+                            <div class="car-card-price">$240/день</div>
+                            <ul class="car-features list-unstyled">
+                                <li><i class="bi bi-speedometer2"></i> 420 л.с.</li>
+                                <li><i class="bi bi-gear"></i> Автоматическая КПП</li>
+                                <li><i class="bi bi-people"></i> 5 мест</li>
+                            </ul>
+                            <div class="mt-auto">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="badge bg-warning">Ограничено</span>
+                                </div>
+                                <button class="btn btn-outline-dark w-100" data-bs-toggle="modal" data-bs-target="#carModal3">Подробнее</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Карточка автомобиля 4 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card car-card h-100">
+                        <img src="cars/Porsche Panamera.jpg" class="card-img-top car-card-img" alt="Porsche Panamera">
+                        <div class="card-body car-card-body d-flex flex-column">
+                            <h5 class="car-card-title">Porsche Panamera</h5>
+                            <div class="car-card-price">$320/день</div>
+                            <ul class="car-features list-unstyled">
+                                <li><i class="bi bi-speedometer2"></i> 455 л.с.</li>
+                                <li><i class="bi bi-gear"></i> Автоматическая КПП</li>
+                                <li><i class="bi bi-people"></i> 4 места</li>
+                            </ul>
+                            <div class="mt-auto">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="badge bg-success">В наличии</span>
+                                </div>
+                                <button class="btn btn-outline-dark w-100" data-bs-toggle="modal" data-bs-target="#carModal4">Подробнее</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <button class="btn btn-gold btn-lg" data-bs-toggle="modal" data-bs-target="#bookingModal">Забронировать автомобиль</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция 4: Услуги -->
+    <section id="services" class="section">
+        <div class="container">
+            <h2 class="section-title text-center">Наши эксклюзивные услуги</h2>
+            <p class="text-center mb-5">Мы предлагаем широкий спектр услуг для вашего комфорта</p>
+            
+            <!-- Аккордеон -->
+            <div class="accordion" id="servicesAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <i class="bi bi-car-front me-2"></i>Краткосрочная аренда
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#servicesAccordion">
+                        <div class="accordion-body">
+                            <p>Аренда премиальных автомобилей на срок от 1 дня. Идеально подходит для деловых поездок, особых мероприятий или просто для того, чтобы испытать удовольствие от вождения роскошного автомобиля.</p>
+                            <ul>
+                                <li>Минимальный срок аренды - 1 день</li>
+                                <li>Неограниченный пробег</li>
+                                <li>Полная страховка включена</li>
+                                <li>Круглосуточная поддержка</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <i class="bi bi-calendar-week me-2"></i>Долгосрочная аренда
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#servicesAccordion">
+                        <div class="accordion-body">
+                            <p>Аренда премиальных автомобилей на срок от 1 месяца. Идеальное решение для бизнесменов, экспатов и всех, кто ценит комфорт и статус на длительный период.</p>
+                            <ul>
+                                <li>Специальные тарифы при аренде от 1 месяца</li>
+                                <li>Регулярное техническое обслуживание</li>
+                                <li>Возможность замены автомобиля</li>
+                                <li>Гибкие условия оплаты</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <i class="bi bi-airplane me-2"></i>Аренда с водителем
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#servicesAccordion">
+                        <div class="accordion-body">
+                            <p>Услуги профессионального водителя на премиальном автомобиле. Идеально для деловых встреч, свадеб, встреч в аэропорту и других важных мероприятий.</p>
+                            <ul>
+                                <li>Опытные профессиональные водители</li>
+                                <li>Пунктуальность и конфиденциальность</li>
+                                <li>Встреча с табличкой в аэропорту</li>
+                                <li>Гибкий график работы</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            <i class="bi bi-gift me-2"></i>Подарочные сертификаты
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#servicesAccordion">
+                        <div class="accordion-body">
+                            <p>Подарочные сертификаты на аренду премиальных автомобилей - оригинальный и незабываемый подарок для ваших близких, друзей или бизнес-партнеров.</p>
+                            <ul>
+                                <li>Сертификаты на любой срок аренды</li>
+                                <li>Элегантное оформление</li>
+                                <li>Доставка в подарочной упаковке</li>
+                                <li>Срок действия - 1 год</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция 5: Отзывы -->
+    <section id="testimonials" class="section bg-light-section">
+        <div class="container">
+            <h2 class="section-title text-center">Отзывы наших клиентов</h2>
+            <p class="text-center mb-5">Что говорят наши клиенты о сотрудничестве с нами</p>
+            
+            <div class="row g-4">
+                <!-- Отзыв 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "Арендовал Mercedes S-Class для важных переговоров. Автомобиль в идеальном состоянии, сервис на высшем уровне. Обязательно буду пользоваться услугами компании снова!"
+                        </div>
+                        <div class="client-info">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" class="client-avatar" alt="Client">
+                            <div>
+                                <h5 class="mb-0">Александр Иванов</h5>
+                                <p class="text-muted mb-0">Бизнесмен</p>
+                            </div>
+                        </div>
+                        <div class="text-warning mt-3">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Отзыв 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "Брала в аренду Porsche Panamera для свадебной фотосессии. Автомобиль произвел фурор! Клиенты были в восторге. Отличное состояние, чистота и безупречный сервис."
+                        </div>
+                        <div class="client-info">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" class="client-avatar" alt="Client">
+                            <div>
+                                <h5 class="mb-0">Елена Петрова</h5>
+                                <p class="text-muted mb-0">Фотограф</p>
+                            </div>
+                        </div>
+                        <div class="text-warning mt-3">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Отзыв 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "Пользуюсь услугами компании уже более года. Арендую BMW 7 Series для деловых поездок. Всегда чисто, исправно и вовремя. Персонал вежливый и профессиональный. Рекомендую!"
+                        </div>
+                        <div class="client-info">
+                            <img src="https://randomuser.me/api/portraits/men/76.jpg" class="client-avatar" alt="Client">
+                            <div>
+                                <h5 class="mb-0">Дмитрий Смирнов</h5>
+                                <p class="text-muted mb-0">IT-директор</p>
+                            </div>
+                        </div>
+                        <div class="text-warning mt-3">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-half"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция 6: Контакты -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title text-center">Свяжитесь с нами</h2>
+            <p class="text-center mb-5">Есть вопросы? Мы с радостью на них ответим!</p>
+            
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <!-- Форма с валидацией -->
+                    <form class="needs-validation" novalidate id="contactForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="firstName" class="form-label">Имя *</label>
+                                <input type="text" class="form-control" id="firstName" required>
+                                <div class="invalid-feedback">
+                                    Пожалуйста, введите ваше имя.
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="lastName" class="form-label">Фамилия *</label>
+                                <input type="text" class="form-control" id="lastName" required>
+                                <div class="invalid-feedback">
+                                    Пожалуйста, введите вашу фамилию.
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="email" class="form-label">Email *</label>
+                                <input type="email" class="form-control" id="email" required>
+                                <div class="invalid-feedback">
+                                    Пожалуйста, введите корректный email адрес.
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="phone" class="form-label">Телефон</label>
+                                <input type="tel" class="form-control" id="phone">
+                            </div>
+                            <div class="col-12">
+                                <label for="message" class="form-label">Сообщение *</label>
+                                <textarea class="form-control" id="message" rows="5" required></textarea>
+                                <div class="invalid-feedback">
+                                    Пожалуйста, введите ваше сообщение.
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="agree" required>
+                                    <label class="form-check-label" for="agree">
+                                        Я согласен с политикой конфиденциальности
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        Вы должны согласиться перед отправкой.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-gold btn-lg w-100" type="submit">Отправить сообщение</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-md-4 text-center mb-4">
+                    <div class="card border-0 h-100">
+                        <div class="card-body d-flex flex-column">
+                            <i class="bi bi-geo-alt-fill text-primary fs-1 mb-3" style="color: var(--primary-gold) !important;"></i>
+                            <h5>Адрес</h5>
+                            <p class="text-muted">г. Москва, ул. Тверская, д. 10</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center mb-4">
+                    <div class="card border-0 h-100">
+                        <div class="card-body d-flex flex-column">
+                            <i class="bi bi-telephone-fill text-primary fs-1 mb-3" style="color: var(--primary-gold) !important;"></i>
+                            <h5>Телефон</h5>
+                            <p class="text-muted">+7 (495) 123-45-67</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center mb-4">
+                    <div class="card border-0 h-100">
+                        <div class="card-body d-flex flex-column">
+                            <i class="bi bi-envelope-fill text-primary fs-1 mb-3" style="color: var(--primary-gold) !important;"></i>
+                            <h5>Email</h5>
+                            <p class="text-muted">info@elitedrive.ru</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <a href="#" class="footer-logo">
+                        <i class="bi bi-speedometer2 me-2"></i>EliteDrive
+                    </a>
+                    <p>Эксклюзивная аренда премиальных автомобилей для самых требовательных клиентов. Мы предлагаем непревзойденный сервис и лучшие автомобили мировых брендов.</p>
+                    <div class="social-links mt-4">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                        <a href="#"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5 class="footer-heading">Навигация</h5>
+                    <ul class="footer-links">
+                        <li><a href="#home">Главная</a></li>
+                        <li><a href="#about">О нас</a></li>
+                        <li><a href="#fleet">Автопарк</a></li>
+                        <li><a href="#services">Услуги</a></li>
+                        <li><a href="#testimonials">Отзывы</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="footer-heading">Услуги</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Краткосрочная аренда</a></li>
+                        <li><a href="#">Долгосрочная аренда</a></li>
+                        <li><a href="#">Аренда с водителем</a></li>
+                        <li><a href="#">Подарочные сертификаты</a></li>
+                        <li><a href="#">Корпоративные клиенты</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading">Контакты</h5>
+                    <ul class="footer-links">
+                        <li><i class="bi bi-geo-alt me-2"></i> г. Москва, ул. Тверская, д. 10</li>
+                        <li><i class="bi bi-telephone me-2"></i> +7 (495) 123-45-67</li>
+                        <li><i class="bi bi-envelope me-2"></i> info@elitedrive.ru</li>
+                        <li><i class="bi bi-clock me-2"></i> Пн-Вс: 9:00 - 21:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 EliteDrive. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно бронирования -->
+    <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bookingModalLabel">Бронирование автомобиля</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="needs-validation" novalidate id="bookingForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="bookingFirstName" class="form-label">Имя *</label>
+                                <input type="text" class="form-control" id="bookingFirstName" required>
+                                <div class="invalid-feedback">
+                                    Пожалуйста, введите ваше имя.
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="bookingLastName" class="form-label">Фамилия *</label>
+                                <input type="text" class="form-control" id="bookingLastName" required>
+                                <div class="invalid-feedback">
+                                    Пожалуйста, введите вашу фамилию.
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="bookingEmail" class="form-label">Email *</label>
+                                <input type="email" class="form-control" id="bookingEmail" required>
+                                <div class="invalid-feedback">
+                                    Пожалуйста, введите корректный email адрес.
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="bookingPhone" class="form-label">Телефон *</label>
+                                <input type="tel" class="form-control" id="bookingPhone" required>
+                                <div class="invalid-feedback">
+                                    Пожалуйста, введите ваш телефон.
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="bookingCar" class="form-label">Автомобиль *</label>
+                                <select class="form-select" id="bookingCar" required>
+                                    <option value="" selected disabled>Выберите автомобиль</option>
+                                    <option value="mercedes">Mercedes-Benz S-Class</option>
+                                    <option value="bmw">BMW 7 Series</option>
+                                    <option value="audi">Audi A8</option>
+                                    <option value="porsche">Porsche Panamera</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Пожалуйста, выберите автомобиль.
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="bookingStart" class="form-label">Дата начала аренды *</label>
+                                <input type="date" class="form-control" id="bookingStart" required>
+                                <div class="invalid-feedback">
+                                    Пожалуйста, выберите дату начала аренды.
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="bookingEnd" class="form-label">Дата окончания аренды *</label>
+                                <input type="date" class="form-control" id="bookingEnd" required>
+                                <div class="invalid-feedback">
+                                    Пожалуйста, выберите дату окончания аренды.
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="bookingAgree" required>
+                                    <label class="form-check-label" for="bookingAgree">
+                                        Я согласен с условиями аренды
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        Вы должны согласиться перед отправкой.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                    <button type="button" class="btn btn-gold" id="submitBooking">Забронировать</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальные окна для автомобилей (пример для одного) -->
+    <div class="modal fade" id="carModal1" tabindex="-1" aria-labelledby="carModal1Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="carModal1Label">Mercedes-Benz S-Class</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="img-fluid rounded" alt="Mercedes-Benz S-Class">
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Характеристики</h4>
+                            <ul class="list-unstyled">
+                                <li><strong>Год:</strong> 2023</li>
+                                <li><strong>Двигатель:</strong> 3.0L V6</li>
+                                <li><strong>Мощность:</strong> 435 л.с.</li>
+                                <li><strong>Коробка передач:</strong> 9-ст. автоматическая</li>
+                                <li><strong>Привод:</strong> Полный</li>
+                                <li><strong>Расход топлива:</strong> 9.1 л/100км</li>
+                            </ul>
+                            <h4>Особенности</h4>
+                            <ul>
+                                <li>Кожаный салон</li>
+                                <li>Панорамная крыша</li>
+                                <li>Система круиз-контроля</li>
+                                <li>Подогрев сидений</li>
+                                <li>Камера заднего вида</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-gold w-100" data-bs-toggle="modal" data-bs-target="#bookingModal">Забронировать</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS с Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Валидация форм
+        (function () {
+            'use strict'
+            
+            // Форма контактов
+            var contactForm = document.getElementById('contactForm')
+            contactForm.addEventListener('submit', function (event) {
+                if (!contactForm.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+                
+                contactForm.classList.add('was-validated')
+            }, false)
+            
+            // Форма бронирования
+            var bookingForm = document.getElementById('bookingForm')
+            var submitBooking = document.getElementById('submitBooking')
+            
+            submitBooking.addEventListener('click', function () {
+                if (!bookingForm.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+                
+                bookingForm.classList.add('was-validated')
+                
+                if (bookingForm.checkValidity()) {
+                    // В реальном приложении здесь будет отправка данных
+                    alert('Бронирование успешно отправлено! Мы свяжемся с вами в ближайшее время.')
+                    var bookingModal = bootstrap.Modal.getInstance(document.getElementById('bookingModal'))
+                    bookingModal.hide()
+                }
+            })
+            
+            // Изменение навигации при скролле
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // Добавляем smooth scroll для якорных ссылок
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Закрываем мобильное меню после клика
+                        const navbarToggler = document.querySelector('.navbar-toggler');
+                        const navbarCollapse = document.querySelector('.navbar-collapse');
+                        if (navbarToggler && !navbarCollapse.classList.contains('show')) {
+                            navbarToggler.click();
+                        }
+                    }
+                });
+            });
+        })()
+    </script>
+</body>
+</html>

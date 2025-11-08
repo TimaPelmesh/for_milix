@@ -1,0 +1,673 @@
+:root {
+    --primary-gold: #d4af37;
+    --dark-navy: #0a0e17;
+    --light-gold: #f4e4a6;
+    --charcoal: #1a1d24;
+    --light-bg: #f8f9fa;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    background-color: #fff;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, .navbar-brand, .display-1, .display-2, .display-3, .display-4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+}
+
+/* Навигация */
+.navbar {
+    background-color: rgba(10, 14, 23, 0.95) !important;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    padding: 15px 0;
+}
+
+.navbar.scrolled {
+    padding: 10px 0;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-size: 1.8rem;
+    color: var(--primary-gold) !important;
+    letter-spacing: 1px;
+}
+
+.nav-link {
+    color: #fff !important;
+    font-weight: 500;
+    margin: 0 10px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--primary-gold) !important;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-gold);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Герой секция с эффектом выезжающей машины */
+.hero-section {
+    background: linear-gradient(135deg, var(--dark-navy) 0%, #1a2539 100%);
+    color: white;
+    padding: 180px 0 100px;
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-car {
+    position: absolute;
+    right: -20%;
+    bottom: 10%;
+    max-width: 60%;
+    height: auto;
+    z-index: 1;
+    transform: translateX(100px) translateY(-20px);
+    opacity: 0;
+    animation: carDriveIn 1.5s forwards 0.5s;
+}
+
+@keyframes carDriveIn {
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.btn-gold {
+    background-color: var(--primary-gold);
+    color: var(--dark-navy);
+    border: none;
+    padding: 12px 30px;
+    font-weight: 600;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-gold:hover {
+    background-color: var(--light-gold);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+}
+
+.btn-outline-light {
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 28px;
+    font-weight: 500;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-outline-light:hover {
+    border-color: var(--primary-gold);
+    background-color: transparent;
+    color: var(--primary-gold);
+}
+
+/* Секции */
+.section {
+    padding: 100px 0;
+}
+
+.section-title {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+    font-size: 2.5rem;
+    color: var(--dark-navy);
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background-color: var(--primary-gold);
+}
+
+.section-title.text-center::after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.bg-dark-section {
+    background-color: var(--dark-navy);
+    color: white;
+}
+
+.bg-dark-section .section-title {
+    color: white;
+}
+
+.bg-light-section {
+    background-color: var(--light-bg);
+}
+
+/* Карточки автомобилей */
+.car-card {
+    transition: all 0.4s ease;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    overflow: hidden;
+    background: white;
+    margin-bottom: 1.5rem;
+}
+
+.car-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.car-card-img {
+    height: 220px;
+    object-fit: cover;
+    width: 100%;
+    object-position: center 70%;
+}
+
+.car-card-body {
+    padding: 1.5rem;
+}
+
+.car-card-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--dark-navy);
+    font-weight: 600;
+}
+
+.car-card-price {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-gold);
+}
+
+.car-features li i {
+    color: var(--primary-gold);
+    margin-right: 10px;
+    width: 16px;
+    text-align: center;
+}
+
+.car-card-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 2;
+}
+
+.car-features li i {
+    color: var(--primary-gold);
+    margin-right: 10px;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cards-container .col-md-6.col-lg-3 {
+    display: flex;
+}
+
+/* Табы */
+.nav-tabs {
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.nav-tabs .nav-link {
+    color: #666 !important;
+    border: none;
+    padding: 12px 25px;
+    font-weight: 500;
+    position: relative;
+    background: transparent;
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--dark-navy) !important;
+    background: transparent;
+    border: none;
+}
+
+.nav-tabs .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-gold);
+}
+
+/* Аккордеон */
+.accordion-button {
+    font-weight: 500;
+    padding: 1.2rem 1.25rem;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: var(--dark-navy);
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--dark-navy);
+    color: white;
+    box-shadow: none;
+}
+
+.accordion-button:not(.collapsed)::after {
+    filter: brightness(0) invert(1);
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+    border-color: var(--primary-gold);
+}
+
+/* Отзывы */
+.testimonial-card {
+    border-left: 4px solid var(--primary-gold);
+    background: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    height: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.testimonial-text {
+    font-style: italic;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.client-info {
+    display: flex;
+    align-items: center;
+}
+
+.client-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+    border: 2px solid var(--primary-gold);
+}
+
+/* Формы */
+.form-control {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--primary-gold);
+    box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.2);
+}
+
+/* Футер */
+footer {
+    background-color: var(--dark-navy);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 70px 0 30px;
+}
+
+.footer-logo {
+    font-size: 1.8rem;
+    color: var(--primary-gold);
+    margin-bottom: 1.5rem;
+    display: inline-block;
+}
+
+.footer-heading {
+    color: white;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--primary-gold);
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary-gold);
+    padding-left: 5px;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: white;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: var(--primary-gold);
+    transform: translateY(-3px);
+}
+
+.copyright {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 30px;
+    margin-top: 50px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .hero-title {
+        font-size: 3.2rem;
+    }
+
+    .hero-car {
+        max-width: 70%;
+        right: -10%;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.8rem;
+    }
+
+    .hero-car {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        max-width: 100%;
+        margin-top: 40px;
+        transform: none;
+    }
+
+    .hero-section {
+        padding: 150px 0 80px;
+        text-align: center;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+    }
+
+    .nav-tabs .nav-link {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    .testimonial-card {
+        padding: 1.5rem;
+    }
+
+    .section {
+        padding: 70px 0;
+    }
+
+    .footer-heading {
+        margin-top: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .btn-gold, .btn-outline-light {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .premium-badge {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+    }
+
+    .nav-tabs .nav-link {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+
+    .car-card-title {
+        font-size: 1.1rem;
+    }
+
+    .car-card-price {
+        font-size: 1.3rem;
+    }
+
+    .car-features {
+        font-size: 0.9rem;
+    }
+
+    .accordion-button {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .testimonial-card {
+        padding: 1.25rem;
+    }
+
+    .client-avatar {
+        width: 50px;
+        height: 50px;
+    }
+
+    .footer-logo {
+        font-size: 1.5rem;
+    }
+
+    .section {
+        padding: 50px 0;
+    }
+
+    .modal-dialog {
+        margin: 20px 10px;
+    }
+
+    .navbar-brand {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+    }
+
+    .stat-number {
+        font-size: 1.8rem;
+    }
+
+    .car-card-body {
+        padding: 1rem;
+    }
+}
+
+/* Дополнительные элементы для роскоши */
+.gold-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+    margin: 2rem 0;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary-gold);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 1rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.premium-badge {
+    display: inline-block;
+    background-color: var(--primary-gold);
+    color: var(--dark-navy);
+    padding: 5px 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+/* Улучшения для мобильной навигации */
+.navbar-toggler {
+    border: none;
+    padding: 4px 8px;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.navbar-toggler-icon {
+    width: 1.2em;
+    height: 1.2em;
+}
+
+/* Улучшения для мобильных карточек */
+.car-card {
+    margin-bottom: 1.5rem;
+}
+
+/* Улучшения для мобильных форм */
+.form-control {
+    font-size: 16px; /* Убирает увеличение в iOS */
+}
+
+/* Улучшения для модальных окон на мобильных */
+.modal-content {
+    border-radius: 8px;
+    border: none;
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.modal-footer {
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
