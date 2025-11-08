@@ -208,10 +208,10 @@ h1, h2, h3, h4, h5, .navbar-brand, .display-1, .display-2, .display-3, .display-
 }
 
 .car-card-img {
-    height: 220px;
-    object-fit: cover;
+    height: 200px;
+    object-fit: contain;
     width: 100%;
-    object-position: center 70%;
+    background-color: #f8f9fa;
 }
 
 .car-card-body {
@@ -264,6 +264,13 @@ h1, h2, h3, h4, h5, .navbar-brand, .display-1, .display-2, .display-3, .display-
     border-bottom: 1px solid rgba(212, 175, 55, 0.2);
     justify-content: center;
     margin-bottom: 3rem;
+    /* Скрываем полосу прокрутки */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE и Edge */
+}
+
+.nav-tabs::-webkit-scrollbar {
+    display: none; /* Chrome, Safari и Opera */
 }
 
 .nav-tabs .nav-link {
@@ -289,6 +296,14 @@ h1, h2, h3, h4, h5, .navbar-brand, .display-1, .display-2, .display-3, .display-
     width: 100%;
     height: 3px;
     background-color: var(--primary-gold);
+}
+
+/* Изображения в табах "О нас" */
+.tab-content img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
 /* Аккордеон */
@@ -363,6 +378,15 @@ footer {
     background-color: var(--dark-navy);
     color: rgba(255, 255, 255, 0.7);
     padding: 70px 0 30px;
+}
+
+/* Контактные карточки */
+.contact-card {
+    margin-bottom: 2rem;
+}
+
+.contact-card .card {
+    padding: 1.5rem;
 }
 
 .footer-logo {
@@ -454,12 +478,7 @@ footer {
     }
 
     .hero-car {
-        position: relative;
-        right: auto;
-        bottom: auto;
-        max-width: 100%;
-        margin-top: 40px;
-        transform: none;
+        display: none; /* Скрываем машину на мобильных */
     }
 
     .hero-section {
@@ -476,7 +495,24 @@ footer {
     }
 
     .stat-number {
-        font-size: 2.5rem;
+        font-size: 1.1rem; /* Еще меньше */
+    }
+    
+    .stat-label {
+        font-size: 0.55rem; /* Еще меньше */
+        letter-spacing: -0.5px;
+        word-spacing: -2px;
+        line-height: 1.1;
+    }
+    
+    /* Уменьшаем отступы между блоками статистики */
+    .hero-section .row.mt-5 {
+        margin-top: 2rem !important;
+    }
+    
+    .hero-section .row.mt-5 .col-4 {
+        padding-left: 0.15rem;
+        padding-right: 0.15rem;
     }
 
     .nav-tabs .nav-link {
@@ -494,6 +530,55 @@ footer {
 
     .footer-heading {
         margin-top: 1.5rem;
+    }
+    
+    /* Изображения в табах на планшетах */
+    .tab-content img {
+        max-height: 400px;
+        width: 100%;
+        object-fit: cover;
+    }
+    
+    /* Адаптация порядка элементов в табах */
+    .tab-pane .row {
+        margin-bottom: 1rem;
+    }
+    
+    /* Контактные блоки на планшетах */
+    #contact .row.mt-5 {
+        margin-top: 2rem !important;
+    }
+    
+    #contact .col-md-4 {
+        margin-bottom: 1.5rem;
+    }
+    
+    #contact .card-body {
+        padding: 1rem !important;
+    }
+    
+    #contact .card-body i {
+        font-size: 2rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    #contact .card-body h5 {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    #contact .card-body p {
+        font-size: 0.9rem;
+        margin-bottom: 0;
+    }
+    
+    /* Футер на планшетах */
+    footer {
+        padding: 50px 0 20px;
+    }
+    
+    footer p {
+        font-size: 0.9rem;
     }
 }
 
@@ -526,11 +611,20 @@ footer {
     }
 
     .stat-number {
-        font-size: 2rem;
+        font-size: 0.95rem; /* Совсем маленький для маленьких экранов */
     }
 
     .stat-label {
-        font-size: 0.8rem;
+        font-size: 0.5rem;
+        letter-spacing: -0.5px;
+        word-spacing: -2px;
+        line-height: 1.1;
+    }
+    
+    /* Уменьшаем отступы между блоками статистики на маленьких экранах */
+    .hero-section .row.mt-5 .col-4 {
+        padding-left: 0.1rem;
+        padding-right: 0.1rem;
     }
 
     .nav-tabs .nav-link {
@@ -579,6 +673,87 @@ footer {
     .navbar-brand {
         font-size: 1.5rem;
     }
+    
+    /* Изображения в табах на мобильных */
+    .tab-content img {
+        max-height: 300px;
+        width: 100%;
+        object-fit: cover;
+        margin-bottom: 1rem;
+    }
+    
+    /* Улучшение читаемости текста в табах */
+    .tab-pane h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .tab-pane p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    
+    /* Контактные блоки на мобильных - более компактно */
+    #contact .row.mt-5 {
+        margin-top: 1.5rem !important;
+    }
+    
+    #contact .col-md-4 {
+        margin-bottom: 1rem;
+    }
+    
+    #contact .card {
+        margin-bottom: 0.75rem;
+    }
+    
+    #contact .card-body {
+        padding: 0.75rem !important;
+    }
+    
+    #contact .card-body i {
+        font-size: 1.5rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    #contact .card-body h5 {
+        font-size: 0.9rem;
+        margin-bottom: 0.35rem;
+    }
+    
+    #contact .card-body p {
+        font-size: 0.8rem;
+        margin-bottom: 0;
+        line-height: 1.3;
+    }
+    
+    /* Футер на мобильных - компактный */
+    footer {
+        padding: 40px 0 15px;
+    }
+    
+    footer .col-lg-4,
+    footer .col-lg-2,
+    footer .col-lg-3,
+    footer .col-md-6 {
+        margin-bottom: 1.5rem;
+    }
+    
+    footer p,
+    footer .footer-links li {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+    
+    .footer-heading {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .copyright {
+        margin-top: 30px;
+        padding-top: 20px;
+        font-size: 0.8rem;
+    }
 }
 
 @media (max-width: 360px) {
@@ -591,11 +766,83 @@ footer {
     }
 
     .stat-number {
-        font-size: 1.8rem;
+        font-size: 0.85rem; /* Минимальный размер для очень маленьких экранов */
+    }
+    
+    .stat-label {
+        font-size: 0.45rem;
+        letter-spacing: -0.7px;
+        word-spacing: -3px;
+        line-height: 1.1;
+    }
+    
+    /* Минимальные отступы для очень маленьких экранов */
+    .hero-section .row.mt-5 .col-4 {
+        padding-left: 0.05rem;
+        padding-right: 0.05rem;
     }
 
     .car-card-body {
         padding: 1rem;
+    }
+    
+    /* Изображения в табах на очень маленьких экранах */
+    .tab-content img {
+        max-height: 250px;
+    }
+    
+    .tab-pane h3 {
+        font-size: 1.2rem;
+    }
+    
+    .tab-pane p {
+        font-size: 0.9rem;
+    }
+    
+    /* Контактные блоки на очень маленьких экранах */
+    #contact .card-body {
+        padding: 0.6rem !important;
+    }
+    
+    #contact .card-body i {
+        font-size: 1.3rem !important;
+        margin-bottom: 0.4rem !important;
+    }
+    
+    #contact .card-body h5 {
+        font-size: 0.85rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    #contact .card-body p {
+        font-size: 0.75rem;
+        line-height: 1.2;
+    }
+    
+    /* Футер на очень маленьких экранах */
+    footer {
+        padding: 30px 0 10px;
+    }
+    
+    footer p,
+    footer .footer-links li {
+        font-size: 0.8rem;
+    }
+    
+    .footer-heading {
+        font-size: 0.95rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .footer-logo {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .copyright {
+        margin-top: 20px;
+        padding-top: 15px;
+        font-size: 0.75rem;
     }
 }
 
@@ -670,4 +917,54 @@ footer {
 
 .modal-footer {
     border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Стили для изображений в модальных окнах */
+.modal-body img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Адаптация модальных окон для мобильных */
+@media (max-width: 768px) {
+    .modal-dialog {
+        margin: 10px;
+        max-width: calc(100% - 20px);
+    }
+    
+    .modal-body {
+        padding: 1rem;
+    }
+    
+    .modal-body h4 {
+        font-size: 1.1rem;
+        margin-top: 1rem;
+    }
+    
+    .modal-body ul {
+        font-size: 0.9rem;
+    }
+    
+    .modal-body .car-card-price {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .modal-body {
+        padding: 0.75rem;
+    }
+    
+    .modal-body h4 {
+        font-size: 1rem;
+    }
+    
+    .modal-body ul li {
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .modal-footer .btn {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+    }
 }

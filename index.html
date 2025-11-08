@@ -10,886 +10,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <!-- Шрифт для премиального вида -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-gold: #d4af37;
-            --dark-navy: #0a0e17;
-            --light-gold: #f4e4a6;
-            --charcoal: #1a1d24;
-            --light-bg: #f8f9fa;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            color: #333;
-            background-color: #fff;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-        
-        h1, h2, h3, h4, h5, .navbar-brand, .display-1, .display-2, .display-3, .display-4 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-        }
-        
-        /* Навигация */
-        .navbar {
-            background-color: rgba(10, 14, 23, 0.95) !important;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            padding: 15px 0;
-        }
-        
-        .navbar.scrolled {
-            padding: 10px 0;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .navbar-brand {
-            font-size: 1.8rem;
-            color: var(--primary-gold) !important;
-            letter-spacing: 1px;
-        }
-        
-        .nav-link {
-            color: #fff !important;
-            font-weight: 500;
-            margin: 0 10px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-link:hover {
-            color: var(--primary-gold) !important;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary-gold);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        /* Герой секция с эффектом выезжающей машины */
-        .hero-section {
-            background: linear-gradient(135deg, var(--dark-navy) 0%, #1a2539 100%);
-            color: white;
-            padding: 180px 0 100px;
-            position: relative;
-            overflow: hidden;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .hero-car {
-            position: absolute;
-            right: -20%;
-            bottom: 10%;
-            max-width: 60%;
-            height: auto;
-            z-index: 1;
-            transform: translateX(100px) translateY(-20px);
-            opacity: 0;
-            animation: carDriveIn 1.5s forwards 0.5s;
-        }
-        
-        @keyframes carDriveIn {
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        
-        .hero-title {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-        }
-        
-        .hero-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        .btn-gold {
-            background-color: var(--primary-gold);
-            color: var(--dark-navy);
-            border: none;
-            padding: 12px 30px;
-            font-weight: 600;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .btn-gold:hover {
-            background-color: var(--light-gold);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
-        }
-        
-        .btn-outline-light {
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            padding: 10px 28px;
-            font-weight: 500;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .btn-outline-light:hover {
-            border-color: var(--primary-gold);
-            background-color: transparent;
-            color: var(--primary-gold);
-        }
-        
-        /* Секции */
-        .section {
-            padding: 100px 0;
-        }
-        
-        .section-title {
-            position: relative;
-            margin-bottom: 3rem;
-            padding-bottom: 1rem;
-            font-size: 2.5rem;
-            color: var(--dark-navy);
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 3px;
-            background-color: var(--primary-gold);
-        }
-        
-        .section-title.text-center::after {
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .bg-dark-section {
-            background-color: var(--dark-navy);
-            color: white;
-        }
-        
-        .bg-dark-section .section-title {
-            color: white;
-        }
-        
-        .bg-light-section {
-            background-color: var(--light-bg);
-        }
-        
-        /* Карточки автомобилей */
-        .car-card {
-            transition: all 0.4s ease;
-            border: none;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            border-radius: 4px;
-            overflow: hidden;
-            background: white;
-            margin-bottom: 1.5rem;
-        }
-        
-        .car-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-        
-        .car-card-img {
-            height: 250px;
-            object-fit: contain;
-            width: 100%;
-            background-color: #f8f9fa;
-            padding: 15px;
-        }
-        
-        .car-card-body {
-            padding: 1.5rem;
-        }
-        
-        .car-card-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: var(--dark-navy);
-            font-weight: 600;
-        }
-        
-        .car-card-price {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--primary-gold);
-        }
-        
-        .car-features li i {
-            color: var(--primary-gold);
-            margin-right: 10px;
-            width: 16px;
-            text-align: center;
-        }
+    <link href="styles.css" rel="stylesheet">
 
-        .car-card-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            z-index: 2;
-        }
-                
-        .car-features li i {
-            color: var(--primary-gold);
-            margin-right: 10px;
-        }
 
-        .cards-container {
-            display: flex;
-            flex-wrap: wrap;
-        }
-        
-        .cards-container .col-md-6.col-lg-3 {
-            display: flex;
-        }
-        /* Табы */
-        .nav-tabs {
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            justify-content: center;
-            margin-bottom: 3rem;
-        }
-        
-        .nav-tabs .nav-link {
-            color: #666 !important;
-            border: none;
-            padding: 12px 25px;
-            font-weight: 500;
-            position: relative;
-            background: transparent;
-        }
-        
-        .nav-tabs .nav-link.active {
-            color: var(--dark-navy) !important;
-            background: transparent;
-            border: none;
-        }
-        
-        .nav-tabs .nav-link.active::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background-color: var(--primary-gold);
-        }
-        
-        /* Аккордеон */
-        .accordion-button {
-            font-weight: 500;
-            padding: 1.2rem 1.25rem;
-            background-color: white;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            color: var(--dark-navy);
-        }
-        
-        .accordion-button:not(.collapsed) {
-            background-color: var(--dark-navy);
-            color: white;
-            box-shadow: none;
-        }
-        
-        .accordion-button:not(.collapsed)::after {
-            filter: brightness(0) invert(1);
-        }
-        
-        .accordion-button:focus {
-            box-shadow: none;
-            border-color: var(--primary-gold);
-        }
-        
-        /* Отзывы */
-        .testimonial-card {
-            border-left: 4px solid var(--primary-gold);
-            background: white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            padding: 2rem;
-            height: 100%;
-            margin-bottom: 1.5rem;
-        }
-        
-        .testimonial-text {
-            font-style: italic;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-        
-        .client-info {
-            display: flex;
-            align-items: center;
-        }
-        
-        .client-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 15px;
-            border: 2px solid var(--primary-gold);
-        }
-        
-        /* Формы */
-        .form-control {
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-        
-        .form-control:focus {
-            border-color: var(--primary-gold);
-            box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.2);
-        }
-        
-        /* Футер */
-        footer {
-            background-color: var(--dark-navy);
-            color: rgba(255, 255, 255, 0.7);
-            padding: 70px 0 30px;
-        }
-        
-        .footer-logo {
-            font-size: 1.8rem;
-            color: var(--primary-gold);
-            margin-bottom: 1.5rem;
-            display: inline-block;
-        }
-        
-        .footer-heading {
-            color: white;
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-heading::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--primary-gold);
-        }
-        
-        .footer-links {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: var(--primary-gold);
-            padding-left: 5px;
-        }
-        
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            margin-right: 10px;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            background-color: var(--primary-gold);
-            transform: translateY(-3px);
-        }
-        
-        .copyright {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 30px;
-            margin-top: 50px;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-        
-        /* Адаптивность */
-        @media (max-width: 1024px) {
-            .hero-title {
-                font-size: 3.2rem;
-            }
-            
-            .hero-car {
-                max-width: 70%;
-                right: -10%;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.8rem;
-            }
-            
-            .hero-car {
-                display: none;
-            }
-            
-            .hero-section {
-                padding: 150px 0 80px;
-                text-align: center;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .hero-buttons {
-                justify-content: center;
-            }
-            
-            .stat-number {
-                font-size: 2.5rem;
-            }
-            
-            .nav-tabs .nav-link {
-                padding: 10px 15px;
-                font-size: 0.9rem;
-            }
-            
-            .testimonial-card {
-                padding: 1.5rem;
-            }
-            
-            .section {
-                padding: 70px 0;
-            }
-            
-            .footer-heading {
-                margin-top: 1.5rem;
-            }
-            
-            .car-card-img {
-                height: 220px;
-                padding: 10px;
-            }
-            
-            .car-card {
-                margin-bottom: 2rem;
-            }
-            
-            footer {
-                padding: 50px 0 20px;
-            }
-            
-            footer .row > div {
-                margin-bottom: 2rem;
-            }
-            
-            .footer-logo {
-                font-size: 1.6rem;
-                margin-bottom: 1rem;
-            }
-            
-            .footer-heading {
-                font-size: 1.1rem;
-                margin-top: 0;
-                margin-bottom: 1rem;
-            }
-            
-            .footer-links {
-                font-size: 0.9rem;
-            }
-            
-            .footer-links li {
-                margin-bottom: 8px;
-            }
-            
-            .copyright {
-                margin-top: 30px;
-                padding-top: 20px;
-            }
-            
-            /* Компактный блок контактов на мобильных */
-            #contact .row.mt-5 {
-                margin-top: 2rem !important;
-            }
-            
-            #contact .col-md-4 {
-                margin-bottom: 0.5rem;
-            }
-            
-            #contact .card-body {
-                padding: 1rem 0.5rem;
-            }
-            
-            #contact .card-body i {
-                font-size: 1.8rem !important;
-                margin-bottom: 0.5rem !important;
-            }
-            
-            #contact .card-body h5 {
-                font-size: 0.95rem;
-                margin-bottom: 0.3rem;
-            }
-            
-            #contact .card-body p {
-                font-size: 0.85rem;
-                margin-bottom: 0;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .hero-title {
-                font-size: 2.2rem;
-            }
-            
-            .btn-gold, .btn-outline-light {
-                width: 100%;
-                margin-bottom: 15px;
-            }
-            
-            .hero-buttons {
-                display: flex;
-                flex-direction: column;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-            
-            .premium-badge {
-                font-size: 0.7rem;
-                padding: 4px 10px;
-            }
-            
-            .stat-number {
-                font-size: 2rem;
-            }
-            
-            .stat-label {
-                font-size: 0.8rem;
-            }
-            
-            .nav-tabs .nav-link {
-                padding: 8px 12px;
-                font-size: 0.85rem;
-            }
-            
-            .car-card-title {
-                font-size: 1.1rem;
-            }
-            
-            .car-card-price {
-                font-size: 1.3rem;
-            }
-            
-            .car-features {
-                font-size: 0.9rem;
-            }
-            
-            .car-card-img {
-                height: 200px;
-                padding: 8px;
-            }
-            
-            .car-card-body {
-                padding: 1.2rem;
-            }
-            
-            .accordion-button {
-                padding: 1rem;
-                font-size: 0.9rem;
-            }
-            
-            .testimonial-card {
-                padding: 1.25rem;
-            }
-            
-            .client-avatar {
-                width: 50px;
-                height: 50px;
-            }
-            
-            .footer-logo {
-                font-size: 1.5rem;
-            }
-            
-            .section {
-                padding: 50px 0;
-            }
-            
-            .modal-dialog {
-                margin: 20px 10px;
-            }
-            
-            .navbar-brand {
-                font-size: 1.5rem;
-            }
-            
-            footer {
-                padding: 40px 0 15px;
-            }
-            
-            footer .container > .row > div {
-                margin-bottom: 1.5rem;
-                text-align: center;
-            }
-            
-            .footer-logo {
-                font-size: 1.4rem;
-                margin-bottom: 0.8rem;
-            }
-            
-            .footer-heading {
-                font-size: 1rem;
-                margin-bottom: 0.8rem;
-            }
-            
-            .footer-heading::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            
-            .footer-links {
-                font-size: 0.85rem;
-            }
-            
-            .footer-links li {
-                margin-bottom: 6px;
-            }
-            
-            .social-links {
-                text-align: center;
-            }
-            
-            .copyright {
-                margin-top: 20px;
-                padding-top: 15px;
-                font-size: 0.85rem;
-            }
-            
-            /* Очень компактный блок контактов для маленьких телефонов */
-            #contact .row.mt-5 {
-                margin-top: 1.5rem !important;
-            }
-            
-            #contact .col-md-4 {
-                margin-bottom: 0.3rem;
-                padding: 0 10px;
-            }
-            
-            #contact .card-body {
-                padding: 0.7rem 0.3rem;
-            }
-            
-            #contact .card-body i {
-                font-size: 1.5rem !important;
-                margin-bottom: 0.3rem !important;
-            }
-            
-            #contact .card-body h5 {
-                font-size: 0.85rem;
-                margin-bottom: 0.2rem;
-                font-weight: 600;
-            }
-            
-            #contact .card-body p {
-                font-size: 0.75rem;
-                line-height: 1.3;
-            }
-        }
-        
-        @media (max-width: 360px) {
-            .hero-title {
-                font-size: 1.8rem;
-            }
-            
-            .section-title {
-                font-size: 1.6rem;
-            }
-            
-            .stat-number {
-                font-size: 1.8rem;
-            }
-            
-            .car-card-img {
-                height: 180px;
-                padding: 5px;
-            }
-            
-            .car-card-body {
-                padding: 1rem;
-            }
-            
-            .car-card-title {
-                font-size: 1rem;
-            }
-            
-            footer {
-                padding: 30px 0 10px;
-            }
-            
-            .footer-logo {
-                font-size: 1.3rem;
-            }
-            
-            .footer-heading {
-                font-size: 0.95rem;
-            }
-            
-            .footer-links {
-                font-size: 0.8rem;
-            }
-            
-            .social-links a {
-                width: 35px;
-                height: 35px;
-                margin-right: 8px;
-            }
-            
-            /* Максимально компактный блок контактов для очень маленьких экранов */
-            #contact .row.mt-5 {
-                margin-top: 1rem !important;
-            }
-            
-            #contact .col-md-4 {
-                margin-bottom: 0.2rem;
-                padding: 0 8px;
-            }
-            
-            #contact .card-body {
-                padding: 0.5rem 0.2rem;
-            }
-            
-            #contact .card-body i {
-                font-size: 1.3rem !important;
-                margin-bottom: 0.2rem !important;
-            }
-            
-            #contact .card-body h5 {
-                font-size: 0.8rem;
-                margin-bottom: 0.15rem;
-            }
-            
-            #contact .card-body p {
-                font-size: 0.7rem;
-                line-height: 1.2;
-            }
-        }
-        
-        /* Дополнительные элементы для роскоши */
-        .gold-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
-            margin: 2rem 0;
-        }
-        
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--primary-gold);
-            margin-bottom: 0.5rem;
-        }
-        
-        .stat-label {
-            font-size: 1rem;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .premium-badge {
-            display: inline-block;
-            background-color: var(--primary-gold);
-            color: var(--dark-navy);
-            padding: 5px 15px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border-radius: 2px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
-        }
-        
-        /* Улучшения для мобильной навигации */
-        .navbar-toggler {
-            border: none;
-            padding: 4px 8px;
-        }
-        
-        .navbar-toggler:focus {
-            box-shadow: none;
-        }
-        
-        .navbar-toggler-icon {
-            width: 1.2em;
-            height: 1.2em;
-        }
-        
-        /* Улучшения для мобильных карточек */
-        .car-card {
-            margin-bottom: 1.5rem;
-        }
-        
-        /* Улучшения для мобильных форм */
-        .form-control {
-            font-size: 16px; /* Убирает увеличение в iOS */
-        }
-        
-        /* Улучшения для модальных окон на мобильных */
-        .modal-content {
-            border-radius: 8px;
-            border: none;
-        }
-        
-        .modal-header {
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-        }
-        
-        .modal-footer {
-            border-top: 1px solid rgba(0,0,0,0.1);
-        }
-    </style>
 </head>
 <body>
     <!-- Header с навигацией -->
@@ -991,7 +114,7 @@
                             <p>Мы понимаем потребности наших клиентов и предлагаем только проверенные решения, соответствующие самым высоким стандартам качества.</p>
                         </div>
                         <div class="col-md-6 order-1 order-md-2 mb-4 mb-md-0">
-                            <img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" class="img-fluid rounded shadow" alt="Experience">
+                            <img src="experience.jpg" class="img-fluid rounded shadow" alt="Experience">
                         </div>
                     </div>
                 </div>
@@ -1003,7 +126,7 @@
                             <p>Мы тщательно следим за состоянием каждого автомобиля, чтобы обеспечить нашим клиентам максимальный комфорт и безопасность.</p>
                         </div>
                         <div class="col-md-6 order-1 order-md-2 mb-4 mb-md-0">
-                            <img src="https://images.unsplash.com/photo-1593941707882-a5bba5331b56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" class="img-fluid rounded shadow" alt="Quality">
+                            <img src="Quality.jpg" class="img-fluid rounded shadow" alt="Quality">
                         </div>
                     </div>
                 </div>
@@ -1015,7 +138,7 @@
                             <p>Доставка автомобиля в удобное для вас место и время, круглосуточная поддержка и гибкие условия аренды - все это делает сотрудничество с нами максимально комфортным.</p>
                         </div>
                         <div class="col-md-6 order-1 order-md-2 mb-4 mb-md-0">
-                            <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" class="img-fluid rounded shadow" alt="Service">
+                            <img src="Service.png" class="img-fluid rounded shadow" alt="Service">
                         </div>
                     </div>
                 </div>
@@ -1121,90 +244,6 @@
             
             <div class="text-center mt-5">
                 <button class="btn btn-gold btn-lg" data-bs-toggle="modal" data-bs-target="#bookingModal">Забронировать автомобиль</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Секция 4: Услуги -->
-    <section id="services" class="section">
-        <div class="container">
-            <h2 class="section-title text-center">Наши эксклюзивные услуги</h2>
-            <p class="text-center mb-5">Мы предлагаем широкий спектр услуг для вашего комфорта</p>
-            
-            <!-- Аккордеон -->
-            <div class="accordion" id="servicesAccordion">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            <i class="bi bi-car-front me-2"></i>Краткосрочная аренда
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#servicesAccordion">
-                        <div class="accordion-body">
-                            <p>Аренда премиальных автомобилей на срок от 1 дня. Идеально подходит для деловых поездок, особых мероприятий или просто для того, чтобы испытать удовольствие от вождения роскошного автомобиля.</p>
-                            <ul>
-                                <li>Минимальный срок аренды - 1 день</li>
-                                <li>Неограниченный пробег</li>
-                                <li>Полная страховка включена</li>
-                                <li>Круглосуточная поддержка</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            <i class="bi bi-calendar-week me-2"></i>Долгосрочная аренда
-                        </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#servicesAccordion">
-                        <div class="accordion-body">
-                            <p>Аренда премиальных автомобилей на срок от 1 месяца. Идеальное решение для бизнесменов, экспатов и всех, кто ценит комфорт и статус на длительный период.</p>
-                            <ul>
-                                <li>Специальные тарифы при аренде от 1 месяца</li>
-                                <li>Регулярное техническое обслуживание</li>
-                                <li>Возможность замены автомобиля</li>
-                                <li>Гибкие условия оплаты</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            <i class="bi bi-airplane me-2"></i>Аренда с водителем
-                        </button>
-                    </h2>
-                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#servicesAccordion">
-                        <div class="accordion-body">
-                            <p>Услуги профессионального водителя на премиальном автомобиле. Идеально для деловых встреч, свадеб, встреч в аэропорту и других важных мероприятий.</p>
-                            <ul>
-                                <li>Опытные профессиональные водители</li>
-                                <li>Пунктуальность и конфиденциальность</li>
-                                <li>Встреча с табличкой в аэропорту</li>
-                                <li>Гибкий график работы</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingFour">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            <i class="bi bi-gift me-2"></i>Подарочные сертификаты
-                        </button>
-                    </h2>
-                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#servicesAccordion">
-                        <div class="accordion-body">
-                            <p>Подарочные сертификаты на аренду премиальных автомобилей - оригинальный и незабываемый подарок для ваших близких, друзей или бизнес-партнеров.</p>
-                            <ul>
-                                <li>Сертификаты на любой срок аренды</li>
-                                <li>Элегантное оформление</li>
-                                <li>Доставка в подарочной упаковке</li>
-                                <li>Срок действия - 1 год</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -1430,7 +469,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 EliteDrive. Все права защищены.</p>
+                <p>&copy; 2025 EliteDrive. Все права защищены.</p>
             </div>
         </div>
     </footer>
@@ -1523,9 +562,11 @@
         </div>
     </div>
 
-    <!-- Модальные окна для автомобилей (пример для одного) -->
+    <!-- Модальные окна для автомобилей -->
+    
+    <!-- Модальное окно Mercedes-Benz S-Class -->
     <div class="modal fade" id="carModal1" tabindex="-1" aria-labelledby="carModal1Label" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="carModal1Label">Mercedes-Benz S-Class</h5>
@@ -1534,31 +575,206 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6 mb-3 mb-md-0">
-                            <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="img-fluid rounded" alt="Mercedes-Benz S-Class">
+                            <img src="cars/Mercedes-Benz S-Class.png" class="img-fluid rounded shadow" alt="Mercedes-Benz S-Class">
                         </div>
                         <div class="col-md-6">
+                            <div class="car-card-price mb-3">$250/день</div>
                             <h4>Характеристики</h4>
-                            <ul class="list-unstyled">
-                                <li><strong>Год:</strong> 2023</li>
-                                <li><strong>Двигатель:</strong> 3.0L V6</li>
-                                <li><strong>Мощность:</strong> 435 л.с.</li>
-                                <li><strong>Коробка передач:</strong> 9-ст. автоматическая</li>
-                                <li><strong>Привод:</strong> Полный</li>
-                                <li><strong>Расход топлива:</strong> 9.1 л/100км</li>
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-2"><strong>Год:</strong> 2023</li>
+                                <li class="mb-2"><strong>Класс:</strong> Премиум седан</li>
+                                <li class="mb-2"><strong>Двигатель:</strong> 3.0L V6 Turbo</li>
+                                <li class="mb-2"><strong>Мощность:</strong> 435 л.с.</li>
+                                <li class="mb-2"><strong>Разгон 0-100:</strong> 5.1 сек</li>
+                                <li class="mb-2"><strong>Коробка передач:</strong> 9-ст. автоматическая</li>
+                                <li class="mb-2"><strong>Привод:</strong> Полный 4MATIC</li>
+                                <li class="mb-2"><strong>Расход топлива:</strong> 9.1 л/100км</li>
+                                <li class="mb-2"><strong>Количество мест:</strong> 5</li>
                             </ul>
                             <h4>Особенности</h4>
-                            <ul>
-                                <li>Кожаный салон</li>
-                                <li>Панорамная крыша</li>
-                                <li>Система круиз-контроля</li>
-                                <li>Подогрев сидений</li>
-                                <li>Камера заднего вида</li>
+                            <ul class="mb-4">
+                                <li>Премиальный кожаный салон Nappa</li>
+                                <li>Панорамная крыша с затемнением</li>
+                                <li>Система активного круиз-контроля</li>
+                                <li>Подогрев и вентиляция сидений</li>
+                                <li>Камера кругового обзора 360°</li>
+                                <li>Мультимедийная система MBUX</li>
+                                <li>Звуковая система Burmester 3D</li>
+                                <li>Адаптивная пневмоподвеска</li>
                             </ul>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <h4>Описание</h4>
+                            <p>Mercedes-Benz S-Class - флагманский седан немецкого автопроизводителя, воплощающий роскошь, комфорт и передовые технологии. Этот автомобиль идеально подходит для деловых встреч, торжественных мероприятий и комфортных поездок на дальние расстояния.</p>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-gold w-100" data-bs-toggle="modal" data-bs-target="#bookingModal">Забронировать</button>
+                    <button type="button" class="btn btn-gold w-100" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#bookingModal">Забронировать</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно BMW 7 Series -->
+    <div class="modal fade" id="carModal2" tabindex="-1" aria-labelledby="carModal2Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="carModal2Label">BMW 7 Series</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <img src="cars/BMW 7 Series.jpg" class="img-fluid rounded shadow" alt="BMW 7 Series">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="car-card-price mb-3">$230/день</div>
+                            <h4>Характеристики</h4>
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-2"><strong>Год:</strong> 2023</li>
+                                <li class="mb-2"><strong>Класс:</strong> Премиум седан</li>
+                                <li class="mb-2"><strong>Двигатель:</strong> 3.0L I6 Turbo</li>
+                                <li class="mb-2"><strong>Мощность:</strong> 400 л.с.</li>
+                                <li class="mb-2"><strong>Разгон 0-100:</strong> 5.3 сек</li>
+                                <li class="mb-2"><strong>Коробка передач:</strong> 8-ст. автоматическая</li>
+                                <li class="mb-2"><strong>Привод:</strong> Полный xDrive</li>
+                                <li class="mb-2"><strong>Расход топлива:</strong> 8.8 л/100км</li>
+                                <li class="mb-2"><strong>Количество мест:</strong> 5</li>
+                            </ul>
+                            <h4>Особенности</h4>
+                            <ul class="mb-4">
+                                <li>Кожаный салон премиум-класса</li>
+                                <li>Панорамная стеклянная крыша Sky Lounge</li>
+                                <li>Адаптивный круиз-контроль с Stop&Go</li>
+                                <li>Массаж и климат-контроль сидений</li>
+                                <li>Парковочный ассистент с камерой</li>
+                                <li>Система iDrive 8.0</li>
+                                <li>Аудиосистема Bowers & Wilkins</li>
+                                <li>Адаптивная пневмоподвеска</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <h4>Описание</h4>
+                            <p>BMW 7 Series - воплощение баварской инженерии и роскоши. Этот седан сочетает в себе динамичный характер BMW с непревзойденным комфортом и технологическим совершенством. Идеальный выбор для бизнес-встреч и представительских поездок.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-gold w-100" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#bookingModal">Забронировать</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно Audi A8 -->
+    <div class="modal fade" id="carModal3" tabindex="-1" aria-labelledby="carModal3Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="carModal3Label">Audi A8</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <img src="cars/Audi A8.jpg" class="img-fluid rounded shadow" alt="Audi A8">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="car-card-price mb-3">$240/день</div>
+                            <h4>Характеристики</h4>
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-2"><strong>Год:</strong> 2023</li>
+                                <li class="mb-2"><strong>Класс:</strong> Премиум седан</li>
+                                <li class="mb-2"><strong>Двигатель:</strong> 3.0L V6 TFSI</li>
+                                <li class="mb-2"><strong>Мощность:</strong> 420 л.с.</li>
+                                <li class="mb-2"><strong>Разгон 0-100:</strong> 5.2 сек</li>
+                                <li class="mb-2"><strong>Коробка передач:</strong> 8-ст. Tiptronic</li>
+                                <li class="mb-2"><strong>Привод:</strong> Полный Quattro</li>
+                                <li class="mb-2"><strong>Расход топлива:</strong> 8.9 л/100км</li>
+                                <li class="mb-2"><strong>Количество мест:</strong> 5</li>
+                            </ul>
+                            <h4>Особенности</h4>
+                            <ul class="mb-4">
+                                <li>Салон из натуральной кожи Valcona</li>
+                                <li>Панорамная крыша с электрозатемнением</li>
+                                <li>Адаптивный круиз-контроль Traffic Jam</li>
+                                <li>Релаксационные сиденья с массажем</li>
+                                <li>Система кругового обзора</li>
+                                <li>MMI touch response</li>
+                                <li>Аудиосистема Bang & Olufsen 3D</li>
+                                <li>Адаптивная пневмоподвеска</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <h4>Описание</h4>
+                            <p>Audi A8 - флагманский седан с элегантным дизайном и передовыми технологиями. Этот автомобиль сочетает роскошь, комфорт и инновационные решения. Идеально подходит для деловых поездок и торжественных мероприятий.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-gold w-100" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#bookingModal">Забронировать</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно Porsche Panamera -->
+    <div class="modal fade" id="carModal4" tabindex="-1" aria-labelledby="carModal4Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="carModal4Label">Porsche Panamera</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <img src="cars/Porsche Panamera.jpg" class="img-fluid rounded shadow" alt="Porsche Panamera">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="car-card-price mb-3">$320/день</div>
+                            <h4>Характеристики</h4>
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-2"><strong>Год:</strong> 2023</li>
+                                <li class="mb-2"><strong>Класс:</strong> Спортивный седан премиум</li>
+                                <li class="mb-2"><strong>Двигатель:</strong> 2.9L V6 Twin-Turbo</li>
+                                <li class="mb-2"><strong>Мощность:</strong> 455 л.с.</li>
+                                <li class="mb-2"><strong>Разгон 0-100:</strong> 4.4 сек</li>
+                                <li class="mb-2"><strong>Коробка передач:</strong> 8-ст. PDK</li>
+                                <li class="mb-2"><strong>Привод:</strong> Полный 4WD</li>
+                                <li class="mb-2"><strong>Расход топлива:</strong> 10.2 л/100км</li>
+                                <li class="mb-2"><strong>Количество мест:</strong> 4</li>
+                            </ul>
+                            <h4>Особенности</h4>
+                            <ul class="mb-4">
+                                <li>Спортивные кожаные сиденья</li>
+                                <li>Панорамная стеклянная крыша</li>
+                                <li>Адаптивный круиз-контроль InnoDrive</li>
+                                <li>Вентиляция и массаж сидений (18 программ)</li>
+                                <li>Парковочный ассистент с камерой</li>
+                                <li>Porsche Communication Management</li>
+                                <li>Аудиосистема Burmester High-End</li>
+                                <li>Спортивная пневмоподвеска</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <h4>Описание</h4>
+                            <p>Porsche Panamera - уникальное сочетание спортивного характера и роскоши премиум-седана. Этот автомобиль создан для тех, кто ценит драйв и комфорт одновременно. Идеальный выбор для незабываемых поездок и особых событий.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-gold w-100" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#bookingModal">Забронировать</button>
                 </div>
             </div>
         </div>
@@ -1566,78 +782,6 @@
 
     <!-- Bootstrap 5 JS с Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script>
-        // Валидация форм
-        (function () {
-            'use strict'
-            
-            // Форма контактов
-            var contactForm = document.getElementById('contactForm')
-            contactForm.addEventListener('submit', function (event) {
-                if (!contactForm.checkValidity()) {
-                    event.preventDefault()
-                    event.stopPropagation()
-                }
-                
-                contactForm.classList.add('was-validated')
-            }, false)
-            
-            // Форма бронирования
-            var bookingForm = document.getElementById('bookingForm')
-            var submitBooking = document.getElementById('submitBooking')
-            
-            submitBooking.addEventListener('click', function () {
-                if (!bookingForm.checkValidity()) {
-                    event.preventDefault()
-                    event.stopPropagation()
-                }
-                
-                bookingForm.classList.add('was-validated')
-                
-                if (bookingForm.checkValidity()) {
-                    // В реальном приложении здесь будет отправка данных
-                    alert('Бронирование успешно отправлено! Мы свяжемся с вами в ближайшее время.')
-                    var bookingModal = bootstrap.Modal.getInstance(document.getElementById('bookingModal'))
-                    bookingModal.hide()
-                }
-            })
-            
-            // Изменение навигации при скролле
-            window.addEventListener('scroll', function() {
-                const navbar = document.querySelector('.navbar');
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-            });
-            
-            // Добавляем smooth scroll для якорных ссылок
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                        
-                        // Закрываем мобильное меню после клика
-                        const navbarToggler = document.querySelector('.navbar-toggler');
-                        const navbarCollapse = document.querySelector('.navbar-collapse');
-                        if (navbarToggler && !navbarCollapse.classList.contains('show')) {
-                            navbarToggler.click();
-                        }
-                    }
-                });
-            });
-        })()
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
